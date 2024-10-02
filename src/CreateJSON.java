@@ -1,28 +1,28 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class CreateJSON {
-    public static ArrayNode readWeatherData(String[] filename) {
+    public static ArrayNode readWeatherData(String[] textFileName) {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode mainArray = mapper.createArrayNode();
 
         try {
-            int i=0;
-            while(i<filename.length){
-                boolean firstTime = true;
-                ObjectNode json = mapper.createObjectNode();
+            for (int i = 0; i < textFileName.length; i++) {
                 ArrayNode jsonArray = mapper.createArrayNode();
-                String path = "WeatherData/" + filename[i];
-                File obj = new File(path);
-                Scanner sc = new Scanner(obj);
+                ObjectNode json = mapper.createObjectNode();
+                String path = "WeatherData/" + textFileName[i];
+                File myObj = new File(path);
+                Scanner myReader = new Scanner(myObj);
 
-                while (sc.hasNextLine()) {
-                    String currentString = sc.nextLine();
+                boolean isFirstTime = true;
+                
+                while (myReader.hasNextLine()) {
+                    String currentString = myReader.nextLine();
                     int colonIndex = currentString.indexOf(":");
 
                     if (colonIndex != -1) {
@@ -30,8 +30,8 @@ public class CreateJSON {
                         String value = currentString.substring(colonIndex + 1);
 
                         if ("id".equals(key)) {
-                            if (firstTime) {
-                                firstTime = false;
+                            if (isFirstTime) {
+                                isFirstTime = false;
                             } else {
                                 jsonArray.add(json);
                                 json = mapper.createObjectNode();
@@ -47,14 +47,15 @@ public class CreateJSON {
                         break;
                     }
                 }
-    
+
                 jsonArray.add(json);
-                sc.close();
+                myReader.close();
                 mainArray.add(jsonArray);
             }
             return mainArray;
+
         } catch (FileNotFoundException e) {
-            System.err.println("500 Internal Server Error");
+            System.err.println("500 - Internal server error.");
             System.exit(1);
         }
         return null;
