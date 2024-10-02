@@ -9,10 +9,11 @@ import java.util.Scanner;
 public class CreateJSON {
     public static ArrayNode readWeatherData(String[] textFileName) {
         ObjectMapper mapper = new ObjectMapper();
-        ArrayNode mainArray = mapper.createArrayNode();
+        ArrayNode resultArray = mapper.createArrayNode();
 
         try {
-            for (int i = 0; i < textFileName.length; i++) {
+            int i=0;
+            while(i<textFileName.length) {
                 ArrayNode jsonArray = mapper.createArrayNode();
                 ObjectNode json = mapper.createObjectNode();
                 String path = "WeatherData/" + textFileName[i];
@@ -50,9 +51,10 @@ public class CreateJSON {
 
                 jsonArray.add(json);
                 myReader.close();
-                mainArray.add(jsonArray);
+                resultArray.add(jsonArray);
+                i++;
             }
-            return mainArray;
+            return resultArray;
 
         } catch (FileNotFoundException e) {
             System.err.println("500 - Internal server error.");
