@@ -7,59 +7,63 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class CreateJSON {
-    public static ArrayNode readWeatherData(String[] textFileName) {
+
+    public static ArrayNode readWeatherData(String[] textFileNames) {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode resultArray = mapper.createArrayNode();
 
-        try {
-            int i=0;
-            while(i<textFileName.length) {
-                ArrayNode jsonArray = mapper.createArrayNode();
-                ObjectNode json = mapper.createObjectNode();
-                String path = "WeatherData/" + textFileName[i];
-                File myObj = new File(path);
-                Scanner myReader = new Scanner(myObj);
+        for (String textFileName : textFileNames) {
+            ArrayNode jsonArray = mapper.createArrayNode();
+            ObjectNode json = mapper.createObjectNode();
+            String path = "WeatherData/" + textFileName;
 
-                boolean isFirstTime = true;
-                
+            try (Scanner myReader = new Scanner(new File(path))) {
+                boolean isFirstEntry = true;
+
                 while (myReader.hasNextLine()) {
-                    String currentString = myReader.nextLine();
-                    int colonIndex = currentString.indexOf(":");
+                    String currentLine = myReader.nextLine();
+                    int colonIndex = currentLine.indexOf(":");
 
                     if (colonIndex != -1) {
-                        String key = currentString.substring(0, colonIndex);
-                        String value = currentString.substring(colonIndex + 1);
+                        String key = currentLine.substring(0, colonIndex).trim();
+                        String value = currentLine.substring(colonIndex + 1).trim();
 
+                        // Check for the first entry to manage JSON object addition
                         if ("id".equals(key)) {
-                            if (isFirstTime) {
-                                isFirstTime = false;
-                            } else {
+                            if (!isFirstEntry) {
                                 jsonArray.add(json);
                                 json = mapper.createObjectNode();
                             }
+                            isFirstEntry = false; // Mark that the first entry has been processed
                         }
 
-                        if (value.matches("-?\\d+(\\.\\d+)?")) {
+                        // Add the key-value pair to the JSON object
+                        if (isNumeric(value)) {
                             json.put(key, Double.parseDouble(value));
                         } else {
                             json.put(key, value);
                         }
                     } else {
-                        break;
+                        break; // Exit loop if the line doesn't contain a valid key-value pair
                     }
                 }
 
-                jsonArray.add(json);
-                myReader.close();
+                // Add the last JSON object to the array if it exists
+                if (!isFirstEntry) {
+                    jsonArray.add(json);
+                }
                 resultArray.add(jsonArray);
-                i++;
+                
+            } catch (FileNotFoundException e) {
+                System.err.println("500 - Internal server error: File not found: " + path);
+                System.exit(1);
             }
-            return resultArray;
-
-        } catch (FileNotFoundException e) {
-            System.err.println("500 - Internal server error.");
-            System.exit(1);
         }
-        return null;
+        return resultArray;
+    }
+
+    private static boolean isNumeric(String str) {
+        // Check if the string can be parsed as a number
+        return str != null && str.matches("-?\\d+(\\.\\d+)?");
     }
 }
