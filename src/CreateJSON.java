@@ -28,13 +28,12 @@ public class CreateJSON {
                         String key = currentLine.substring(0, colonIndex).trim();
                         String value = currentLine.substring(colonIndex + 1).trim();
 
-                        // Check for the first entry to manage JSON object addition
                         if ("id".equals(key)) {
                             if (!isFirstEntry) {
                                 jsonArray.add(json);
                                 json = mapper.createObjectNode();
                             }
-                            isFirstEntry = false; // Mark that the first entry has been processed
+                            isFirstEntry = false;
                         }
 
                         // Add the key-value pair to the JSON object
@@ -44,7 +43,7 @@ public class CreateJSON {
                             json.put(key, value);
                         }
                     } else {
-                        break; // Exit loop if the line doesn't contain a valid key-value pair
+                        break;
                     }
                 }
 

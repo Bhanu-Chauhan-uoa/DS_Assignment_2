@@ -1,51 +1,102 @@
-id: IDS60901
-name: Adelaide (West Terrace / ngayirdapira)
+id:IDS60905
+name:Norwood
 state: SA
-time_zone: CST
-lat: -34.9
-lon: 138.6
-local_date_time: 15/04:00pm
-local_date_time_full: 20230715160000
-air_temp: 13.3
-apparent_t: 9.5
-cloud: Partly cloudy
-dewpt: 5.7
-press: 1023.9
-rel_hum: 60
-wind_dir: S
-wind_spd_kmh: 15
-wind_spd_kt: 8
-id: IDS60902
-name: Adelaide (West Terrace / ngayirdapira)
+time_zone:CST
+lat:-34.9
+lon:138.6
+local_date_time:15/04:04:00pm
+local_date_time_full:20230715170000
+air_temp:15.5
+apparent_t:12.0
+cloud:Clear
+dewpt:6.0
+press:1023.0
+rel_hum:57
+wind_dir:S
+wind_spd_kmh:12
+wind_spd_kt:6
+id:IDS60906
+name:Campbelltown
 state: SA
-time_zone: CST
-lat: -34.9
-lon: 138.6
-local_date_time: 15/04:00pm
-local_date_time_full: 20230715160000
-air_temp: 13.3
-apparent_t: 9.5
-cloud: Partly cloudy
-dewpt: 5.7
-press: 1023.9
-rel_hum: 60
-wind_dir: S
-wind_spd_kmh: 15
-wind_spd_kt: 8
-id: IDS60903
-name: Adelaide (West Terrace / ngayirdapira)
+time_zone:CST
+lat:-34.8
+lon:138.6
+local_date_time:15/04:04:30pm
+local_date_time_full:20230715173000
+air_temp:16.2
+apparent_t:13.0
+cloud:Partly cloudy
+dewpt:7.0
+press:1022.5
+rel_hum:54
+wind_dir:S
+wind_spd_kmh:14
+wind_spd_kt:7
+id:IDS60907
+name:Unley
 state: SA
-time_zone: CST
-lat: -34.9
-lon: 138.6
-local_date_time: 15/04:00pm
-local_date_time_full: 20230715160000
-air_temp: 13.3
-apparent_t: 9.5
-cloud: Partly cloudy
-dewpt: 5.7
-press: 1023.9
-rel_hum: 60
-wind_dir: S
-wind_spd_kmh: 15
-wind_spd_kt: 8
+time_zone:CST
+lat:-34.9
+lon:138.6
+local_date_time:15/04:05:00pm
+local_date_time_full:20230715180000
+air_temp:14.8
+apparent_t:11.5
+cloud:Cloudy
+dewpt:6.5
+press:1021.0
+rel_hum:59
+wind_dir:SE
+wind_spd_kmh:11
+wind_spd_kt:6
+id:IDS60908
+name:West Beach
+state: SA
+time_zone:CST
+lat:-34.9
+lon:138.5
+local_date_time:15/04:05:30pm
+local_date_time_full:20230715183000
+air_temp:17.0
+apparent_t:14.2
+cloud:Mostly sunny
+dewpt:7.5
+press:1023.2
+rel_hum:52
+wind_dir:E
+wind_spd_kmh:16
+wind_spd_kt:8
+id:IDS60905
+name:Norwood
+state: SA
+time_zone:CST
+lat:-34.9
+lon:138.6
+local_date_time:15/04:04:00pm
+local_date_time_full:20230815170000
+air_temp:15.5
+apparent_t:12.0
+cloud:Clear
+dewpt:6.0
+press:1023.0
+rel_hum:57
+wind_dir:S
+wind_spd_kmh:12
+wind_spd_kt:6
+id:IDS60905
+name:Norwood
+state: SA
+time_zone:CST
+lat:-34.9
+lon:138.6
+local_date_time:15/04:04:00pm
+local_date_time_full:20230915170000
+air_temp:15.5
+apparent_t:12.0
+cloud:Clear
+dewpt:6.0
+press:1023.0
+rel_hum:57
+wind_dir:S
+wind_spd_kmh:12
+wind_spd_kt:6
